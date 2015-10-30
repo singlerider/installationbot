@@ -34,15 +34,15 @@ class irc:
         return line
 
     def check_for_message(self, data):
-        if re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@(irc\.tinyspeck\.com|\.testserver\.local) PRIVMSG #[a-zA-Z0-9_]+ :.+$', data):
+        if re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\.tmi\.twitch\.tv|\.testserver\.local) PRIVMSG #[a-zA-Z0-9_]+ :.+$', data):
             return True
 
     def check_for_join(self, data):
-        if re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@(irc\.tinyspeck\.com|\.testserver\.local) JOIN #[a-zA-Z0-9_]', data):
+        if re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\.tmi\.twitch\.tv|\.testserver\.local) JOIN #[a-zA-Z0-9_]', data):
             return True
 
     def check_for_part(self, data):
-        if re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@(irc\.tinyspeck\.com|\.testserver\.local) PART #[a-zA-Z0-9_]', data):
+        if re.match(r'^:[a-zA-Z0-9_]+\![a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\.tmi\.twitch\.tv|\.testserver\.local) PART #[a-zA-Z0-9_]', data):
             return True
 
     def check_is_command(self, message, valid_commands):
@@ -57,9 +57,12 @@ class irc:
     def get_logged_in_users(self, data):
         if data.find('353'):
             return True
+            #:lorenzotherobot.tmi.twitch.tv 353 lorenzotherobot = #curvyllama :l0rd_bulldog agentsfire workundercover69 the_polite_zombie jalenxweezy13 curvyllama hmichaelh2015 steven0405 armypenguin91 hionas22 prophecymxxm singlerider bentleet tesylesor vipervenom2u zombiesdelux115 lorenzotherobot nerdy0rgyparty michaelcycle gewgled jconnfilm rustemperor frozelio
 
     def check_for_ping(self, data):
+
         last_ping = time.time()
+        # if data[0:4] == "PING":
         if data.find('PING') != -1:
             self.sock.send('PONG ' + data.split()[1] + '\r\n')
             last_ping = time.time()
@@ -70,7 +73,7 @@ class irc:
         return re.match(r'^:(?P<username>.*?)!.*?PRIVMSG (?P<channel>.*?) :(?P<message>.*)', data).groupdict()
 
     def check_login_status(self, data):
-        if re.match(r'^:(testserver\.local|irc\.tinyspeck\.com) NOTICE \* :Login unsuccessful\r\n$', data):
+        if re.match(r'^:(testserver\.local|tmi\.twitch\.tv) NOTICE \* :Login unsuccessful\r\n$', data):
             return False
         else:
             return True
@@ -107,9 +110,8 @@ class irc:
         sock.settimeout(None)
 
         sock.send('USER %s\r\n' % self.config['username'])
-        sock.send('PASS %s\r\n' % self.config['password'])
+        sock.send('PASS %s\r\n' % self.config['oauth_password'])
         sock.send('NICK %s\r\n' % self.config['username'])
-
         self.sock = sock
 
         loginMsg = self.nextMessage()

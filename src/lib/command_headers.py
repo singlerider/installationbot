@@ -12,7 +12,7 @@ commands = {
 
     '!help': {
         'limit': 15,
-        'return': 'There is a super useful README for lorenzo at http://www.twitch.tv/lorenzotherobot',
+        'return': 'There is a README for me on my profile',
         'usage': '!help'
 
     },
