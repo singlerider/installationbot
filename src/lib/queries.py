@@ -1,15 +1,25 @@
-from pymongo import MongoClient
+# -*- coding: utf-8 -*-
+import psycopg2
+import sys
 from time import time
 
-client = MongoClient()
+con = None
 
-client = MongoClient("127.0.0.1:27017")
+try:
 
-db = client.twitch
-collection = db.users
+    con = psycopg2.connect(database='twitchinstalls', user='shane')
+    cur = con.cursor()
+    cur.execute('SELECT version()')
+    ver = cur.fetchone()
+    print ver
 
-coll = db.dataset
-coll = db['dataset']
+
+except psycopg2.DatabaseError, e:
+    print 'Error %s' % e
+    sys.exit(1)
+
+
+
 
 """
 #### Example Data Structure
@@ -43,41 +53,24 @@ users = {}
 messages = {}
 
 def new_user(user, message):
-    result = db.users.insert_one(
-    {user: {
-        "messages": {
-            message: {
-                "timestamp": [time()],
-                "counter": 1
-                },
-            },
-        "points": 0,
-        "time_in_chat": 0
-        }
-    }
-    )
-    messages[message] = {
-        "users": {
-            user: 0
-        },
-        "timestamp": [time()],
-        "counter": 1
-        }
+    pass
 
 def insert_message(user, message):
-    new_user(user, message)
-    """if message not in users[user]["messages"]:
-        users[user]["messages"][message] = {
-                    "timestamp": [time()],
-                    "counter": 1
-                    }
-        messages[message] = {
-            users: {
-                user: 1
-            },
-            "timestamp": [time()],
-            "counter": 1
-        }"""
+     with con:
+
+        cur = con.cursor()
+        cur.execute("""
+        INSERT INTO users
+        SELECT	*
+        FROM	(VALUES (%s, %s, %s)) tbl(username, points, time_in_chat)
+        WHERE NOT EXISTS(
+        				SELECT	0
+        				FROM	users
+        				WHERE	tbl.username = users.username
+        				);""",
+                    [user, 0, 0])
+        cur.execute("""INSERT INTO messages (username, message, time_stamp)
+        VALUES (%s, %s, %s)""", [user, message, time()])
 
 
 def count_messages(message):

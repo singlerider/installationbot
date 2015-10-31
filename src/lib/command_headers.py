@@ -1,6 +1,6 @@
 commands = {
 
-    '!report': {
+    '!kajfklajflksajlkfjlksjf': {
         'limit': 200,
         'argc': 1,
         'return': 'command',
@@ -10,7 +10,7 @@ commands = {
 
     },
 
-    '!help': {
+    '!asndan,mna,n,awmn,man,m': {
         'limit': 15,
         'return': 'There is a README for me on my profile',
         'usage': '!help'

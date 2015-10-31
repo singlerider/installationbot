@@ -54,8 +54,7 @@ SET default_with_oids = false;
 CREATE TABLE messages (
     username character varying(50) DEFAULT ''::character varying NOT NULL,
     message character varying(2000) DEFAULT ''::character varying NOT NULL,
-    "time" double precision NOT NULL,
-    counter integer NOT NULL
+    time_stamp double precision NOT NULL
 );
 
 
@@ -79,7 +78,7 @@ ALTER TABLE users OWNER TO shane;
 --
 
 ALTER TABLE ONLY messages
-    ADD CONSTRAINT messages_pkey PRIMARY KEY (username);
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (username, time_stamp);
 
 
 --

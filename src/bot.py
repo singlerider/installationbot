@@ -49,7 +49,7 @@ class Roboraj(object):
                 resp1 = '%s' % (channel)
                 resp2 = '%s' % (message)
                 USER = username
-                MESSAGE = unicode(message)
+                MESSAGE = message.decode('utf-8')
                 print MESSAGE
                 try:
                     insert_message(USER, MESSAGE)
