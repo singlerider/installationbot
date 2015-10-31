@@ -1,5 +1,5 @@
 """
-Command Center for Software Development Emergencies!!!!!!!!
+Bot to log all the things from TwitchInstallsArchLinux
 
 by Shane Engelman (me@5h4n3.com)
 """
@@ -46,14 +46,8 @@ class Roboraj(object):
                 resp0 = '%s' % (username)
                 resp1 = '%s' % (channel)
                 resp2 = '%s' % (message)
-                #print "username", username
-                #print "channel", channel
-                #print "message", message
-                #self.irc.send_message(channel, resp0)
-                #self.irc.send_message(channel, resp1)
-                #self.irc.send_message(channel, resp2)
-
-                # check if message is a command with no arguments
+                USER = username
+                MESSAGE = message
                 part = message.split(' ')[0]
                 valid = False
                 if commands.is_valid_command(message):
@@ -110,15 +104,6 @@ class Roboraj(object):
             self.irc.send_message(channel, resp)
             return
 
-        ##### USER LEVEL CHECKING WILL NEED REVISION
-        # if there's a required userlevel, validate it.
-        #if commands.check_has_ul(username, command):
-        #    if username not in user_dict["chatters"]["moderators"]:
-        #        resp = '(%s) : %s' % (
-        #            username, "This is a moderator-only command!")
-        #        pbot(resp, channel)
-        #        self.irc.send_message(channel, resp)
-        #        return
 
         result = commands.pass_to_function(command, args)
         commands.update_last_used(command, channel)
