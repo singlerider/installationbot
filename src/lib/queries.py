@@ -1,36 +1,17 @@
 from pymongo import MongoClient
-from src.bot import USER, MESSAGE
 from time import time
 
 client = MongoClient()
 
-client = MongoClient("mongodb://mongodb0.example.net:27019")
+client = MongoClient("127.0.0.1:27017")
 
-db = client.primer
-
-db = client['primer']
-
-db.dataset
-db['dataset']
+db = client.twitch
+collection = db.users
 
 coll = db.dataset
 coll = db['dataset']
 
 """
-
-dict = {
-        USER: {
-            "points": 0,
-            "time_in_chat": 0,
-            {
-            MESSAGE: {
-                "timestamp": [],
-                "counter": 0
-                }
-            }
-        }
-    }
-
 #### Example Data Structure
 users = {
         USER: {
@@ -38,6 +19,7 @@ users = {
                 MESSAGE: {
                     "timestamp": [],
                     "counter": 0
+                    ""
                 }
             },
             "points": 0,
@@ -53,76 +35,62 @@ messages = {
                 "counter": 0
                 }
             }
+
+            users["shane"]["messages"]["uniquemessage"] = {"timestamp": [145.324], "counter": 1}
 """
-"""
+
 users = {}
 messages = {}
-"""
-def new_user():
-    """
-    users[USER] = {
+
+def new_user(user, message):
+    result = db.users.insert_one(
+    {user: {
         "messages": {
-            MESSAGE: {
-                "timestamp" = [time()],
-                "counter" = 1
-                }
-            }
+            message: {
+                "timestamp": [time()],
+                "counter": 1
+                },
+            },
         "points": 0,
         "time_in_chat": 0
         }
-    messages[MESSAGE] = {
-        users: {
-            USER: 0
-        }
-        "timestamp": [time()],
-        "counter": += 1
     }
-    """
-    pass
-
-def insert_message():
-    """
-    if USER not in users:
-        new_user()
-    else:
-        users[USER] = {
-            "messages": {
-                MESSAGE: {
-                    "timestamp" = [time()],
-                    "counter" += 1
-                    }
-                }
-            }
-        messages[MESSAGE] = {
-            users: {
-                USER: += 1
-            }
-            "timestamp": [time()],
-            "counter": += 1
+    )
+    messages[message] = {
+        "users": {
+            user: 0
+        },
+        "timestamp": [time()],
+        "counter": 1
         }
-    """
-    pass
 
-def count_messages():
-    """
-    len(messages[MESSAGE])
-    """
-    pass
+def insert_message(user, message):
+    new_user(user, message)
+    """if message not in users[user]["messages"]:
+        users[user]["messages"][message] = {
+                    "timestamp": [time()],
+                    "counter": 1
+                    }
+        messages[message] = {
+            users: {
+                user: 1
+            },
+            "timestamp": [time()],
+            "counter": 1
+        }"""
+
+
+def count_messages(message):
+    len(messages[message])
+
 
 def count_message(message):
-    """
     messages[message]["counter"]
-    """
-    pass
 
-def message_times(message):
-    """
-    users[USER][messages][message]["timestamp"]
-    """
-    pass
+
+def message_times(user, message):
+    users[user]["messages"][message]["timestamp"]
+
 
 def count_user_messages(user):
-    """
-    len(users[user][messages])
-    """
-    pass
+    len(users[user]["messages"])

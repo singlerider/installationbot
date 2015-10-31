@@ -15,6 +15,8 @@ import traceback
 import sched
 import time
 import threading
+from src.lib.twitch import USER, MESSAGE
+from src.lib.queries import insert_message
 
 END = False
 
@@ -47,7 +49,12 @@ class Roboraj(object):
                 resp1 = '%s' % (channel)
                 resp2 = '%s' % (message)
                 USER = username
-                MESSAGE = message
+                MESSAGE = unicode(message)
+                print MESSAGE
+                try:
+                    insert_message(USER, MESSAGE)
+                except Exception as err:
+                    print ">>> ERROR:", err
                 part = message.split(' ')[0]
                 valid = False
                 if commands.is_valid_command(message):

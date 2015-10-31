@@ -4,6 +4,9 @@ import random
 import datetime
 from src.bot import *
 
+USER = ""
+MESSAGE = ""
+
 def get_dict_for_users():
     get_dict_for_users_url = 'http://tmi.twitch.tv/group/user/twitchinstallsarchlinux/chatters'
     get_dict_for_users_resp = requests.get(url=get_dict_for_users_url)
