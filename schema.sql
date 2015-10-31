@@ -10,13 +10,13 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: twitchinstalls; Type: DATABASE; Schema: -; Owner: postgres
+-- Name: twitchinstalls; Type: DATABASE; Schema: -; Owner: shane
 --
 
 CREATE DATABASE twitchinstalls WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
 
 
-ALTER DATABASE twitchinstalls OWNER TO postgres;
+ALTER DATABASE twitchinstalls OWNER TO shane;
 
 \connect twitchinstalls
 
@@ -48,7 +48,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: messages; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- Name: messages; Type: TABLE; Schema: public; Owner: shane; Tablespace:
 --
 
 CREATE TABLE messages (
@@ -58,10 +58,10 @@ CREATE TABLE messages (
 );
 
 
-ALTER TABLE messages OWNER TO postgres;
+ALTER TABLE messages OWNER TO shane;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- Name: users; Type: TABLE; Schema: public; Owner: shane; Tablespace:
 --
 
 CREATE TABLE users (
@@ -71,10 +71,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO postgres;
+ALTER TABLE users OWNER TO shane;
 
 --
--- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: shane; Tablespace:
 --
 
 ALTER TABLE ONLY messages
@@ -82,7 +82,7 @@ ALTER TABLE ONLY messages
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: shane; Tablespace:
 --
 
 ALTER TABLE ONLY users
@@ -90,7 +90,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: messages; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: messages; Type: FK CONSTRAINT; Schema: public; Owner: shane
 --
 
 ALTER TABLE ONLY messages
@@ -98,12 +98,12 @@ ALTER TABLE ONLY messages
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: postgres
+-- Name: public; Type: ACL; Schema: -; Owner: shane
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
+REVOKE ALL ON SCHEMA public FROM shane;
+GRANT ALL ON SCHEMA public TO shane;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 

@@ -1,7 +1,7 @@
 """
 Bot to log all the things from TwitchInstallsArchLinux
 
-by Shane Engelman (me@5h4n3.com)
+by shane Engelman (me@5h4n3.com)
 """
 
 import lib.irc as irc_
