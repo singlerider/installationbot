@@ -7,7 +7,7 @@ con = None
 
 try:
 
-    con = psycopg2.connect(database='twitchinstalls', user='shane')
+    con = psycopg2.connect(database='twitchinstalls', user='postgres')
     cur = con.cursor()
     cur.execute('SELECT version()')
     ver = cur.fetchone()
@@ -17,9 +17,6 @@ try:
 except psycopg2.DatabaseError, e:
     print 'Error %s' % e
     sys.exit(1)
-
-
-
 
 """
 #### Example Data Structure
@@ -46,7 +43,7 @@ messages = {
                 }
             }
 
-            users["shane"]["messages"]["uniquemessage"] = {"timestamp": [145.324], "counter": 1}
+            users["postgres"]["messages"]["uniquemessage"] = {"timestamp": [145.324], "counter": 1}
 """
 
 users = {}

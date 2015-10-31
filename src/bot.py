@@ -50,7 +50,6 @@ class Roboraj(object):
                 resp2 = '%s' % (message)
                 USER = username
                 MESSAGE = message.decode('utf-8')
-                print MESSAGE
                 try:
                     insert_message(USER, MESSAGE)
                 except Exception as err:

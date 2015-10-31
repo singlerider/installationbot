@@ -10,13 +10,13 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: twitchinstalls; Type: DATABASE; Schema: -; Owner: shane
+-- Name: twitchinstalls; Type: DATABASE; Schema: -; Owner: postgres
 --
 
 CREATE DATABASE twitchinstalls WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
 
 
-ALTER DATABASE twitchinstalls OWNER TO shane;
+ALTER DATABASE twitchinstalls OWNER TO postgres;
 
 \connect twitchinstalls
 
@@ -28,14 +28,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -48,7 +48,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: messages; Type: TABLE; Schema: public; Owner: shane; Tablespace: 
+-- Name: messages; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE messages (
@@ -58,10 +58,10 @@ CREATE TABLE messages (
 );
 
 
-ALTER TABLE messages OWNER TO shane;
+ALTER TABLE messages OWNER TO postgres;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: shane; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE users (
@@ -71,10 +71,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO shane;
+ALTER TABLE users OWNER TO postgres;
 
 --
--- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: shane; Tablespace: 
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY messages
@@ -82,7 +82,7 @@ ALTER TABLE ONLY messages
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: shane; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY users
@@ -90,7 +90,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: messages; Type: FK CONSTRAINT; Schema: public; Owner: shane
+-- Name: messages; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY messages
@@ -98,16 +98,15 @@ ALTER TABLE ONLY messages
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: shane
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM shane;
-GRANT ALL ON SCHEMA public TO shane;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
 -- PostgreSQL database dump complete
 --
-
