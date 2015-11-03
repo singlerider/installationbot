@@ -3,71 +3,18 @@ import psycopg2
 import sys
 from time import time
 
-con = None
-
-try:
-
-    con = psycopg2.connect(database='twitchinstalls', user='shane')
-    cur = con.cursor()
-    cur.execute('SELECT version()')
-    ver = cur.fetchone()
-    print ver
-
-
-except psycopg2.DatabaseError, e:
-    print 'Error %s' % e
-    sys.exit(1)
-
 """
-#### Example Data Structure
-users = {
-        USER: {
-            messages: {
-                MESSAGE: {
-                    "timestamp": [],
-                    "counter": 0
-                    ""
-                }
-            },
-            "points": 0,
-            "time_in_chat": 0
-            }
-        }
-messages = {
-            MESSAGE: {
-                users: {
-                    USER: True,
-                },
-                "timestamp": [],
-                "counter": 0
-                }
-            }
-
-            users["postgres"]["messages"]["uniquemessage"] = {"timestamp": [145.324], "counter": 1}
+Working on new schema
 """
 
-users = {}
-messages = {}
+
 
 def new_user(user, message):
+    # insert new user if not alread
     pass
 
 def insert_message(user, message):
-     with con:
-
-        cur = con.cursor()
-        cur.execute("""
-        INSERT INTO users
-        SELECT	*
-        FROM	(VALUES (%s, %s, %s)) tbl(username, points, time_in_chat)
-        WHERE NOT EXISTS(
-        				SELECT	0
-        				FROM	users
-        				WHERE	tbl.username = users.username
-        				);""",
-                    [user, 0, 0])
-        cur.execute("""INSERT INTO messages (username, message, time_stamp)
-        VALUES (%s, %s, %s)""", [user, message, time()])
+    pass
 
 
 def count_messages(message):
