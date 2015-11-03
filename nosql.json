@@ -1,0 +1,107 @@
+db = logger
+
+collections = users, messages, channels
+
+users = {
+  {
+    "_id": user
+  }
+}
+
+messages = {
+  {
+    "_id": "hdw7823478dh238d723hd823hd23",
+    "channel": channel,
+    "message": message,
+    "time": time
+  }
+}
+
+
+channels = {
+  {
+    "_id": channel,
+    "users": {
+      "user_id": {
+        "points": points,
+        "day": {
+          "date": {
+            "time_in_chat": time_in_chat
+          }
+        }
+      }
+    }
+  }
+}
+
+example
+
+users= {
+  {
+    "_id": "singlerider" //username
+  },
+  {
+    "_id": "installationbot" //username
+  }
+}
+
+messages = {
+
+}
+
+channels = {
+  {
+    "_id": "curvyllama", //channelname
+    "users": {
+      "singlerider": { //username
+        "points": 3, //points
+        "day": {
+          "Nov 2 2015": { //date
+            "time_in_chat": 14 //minutesinchat
+          },
+          "Nov 3 2015": { //date
+            "time_in_chat": 32 //minutesinchat
+          }
+        }
+      },
+      "installationbot": { //username
+        "points": 3, //points
+        "day": {
+          "Nov 2 2015": { //date
+            "time_in_chat": 14 //minutesinchat
+          },
+          "Nov 3 2015": { //date
+            "time_in_chat": 32 //minutesinchat
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "shedeviil_09", //channelname
+    "users": {
+      "singlerider": { //username
+        "points": 42, //points
+        "day": {
+          "Nov 2 2015": { //date
+            "time_in_chat": 180 //minutesinchat
+          },
+          "Nov 3 2015": { //date
+            "time_in_chat": 62 //minutesinchat
+          }
+        }
+      },
+      "installationbot": { //username
+        "points": 67, //points
+        "day": {
+          "Nov 2 2015": { //date
+            "time_in_chat": 800 //minutesinchat
+          },
+          "Nov 3 2015": { //date
+            "time_in_chat": 250 //minutesinchat
+          }
+        }
+      }
+    }
+  }
+}
